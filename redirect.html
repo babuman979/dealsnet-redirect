@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Loading Product...</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 60px;
-    }
-  </style>
-</head>
-<body>
-  <h2>🔄 Loading product details...</h2>
-  <script>
-    const url = new URL(window.location.href);
-    const productId = url.pathname.split("/").pop();
-    if (productId) {
-      window.location.href = `https://script.google.com/macros/s/AKfycbzaL_4ED2oWi3BMVNzYqtZDvYjjASWfr3KP_qbtcdKUqz58x_1DeDiykbqP-bjRB508hw/exec?id=${productId}`;
-    } else {
-      document.body.innerHTML = "<h2 style='color:red;'>❌ No product ID found in URL.</h2>";
-    }
-  </script>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      window.onload = function () {
+        // Get the full path like "/redirect.html/35535550"
+        const path = window.location.pathname;
+        
+        // Extract the product ID by splitting the path
+        const parts = path.split('/');
+        const productId = parts[parts.length - 1]; // "35535550"
+
+        // Your deployed Web App URL
+        const baseUrl = 'https://script.google.com/macros/s/AKfycbzaL_4ED2oWi3BMVNzYqtZDvYjjASWfr3KP_qbtcdKUqz58x_1DeDiykbqP-bjRB508hw/exec';
+
+        // Redirect with the product ID
+        if (productId) {
+          window.location.href = `${baseUrl}?id=${productId}`;
+        } else {
+          document.body.innerHTML = '<h2>❌ Product ID not found in URL.</h2>';
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to product page...</p>
+  </body>
 </html>
